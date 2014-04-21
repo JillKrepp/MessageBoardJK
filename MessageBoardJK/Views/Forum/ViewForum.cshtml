@@ -1,0 +1,14 @@
+﻿@model MessageBoardJK.Models.ViewForumModel
+@{
+    ViewBag.Title = "ViewForum"; 
+}
+
+
+@(Html.ActionLink("Post Thread", "NewThread", new { forum_id = Model.Forum.forum_id}))
+<ul>
+@foreach( var thread in Model.Threads)
+{
+    <li>@(Html.ActionLink(thread.OpeningPost.subject, "ViewThread","Forum", new { id = thread.thread_id }, null))</li>
+}
+</ul>
+

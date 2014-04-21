@@ -1,0 +1,14 @@
+﻿
+@model MessageBoardJK.Models.BaseModel
+@{
+    ViewBag.Title = "NewUser";
+}
+ @using (Html.BeginForm("CreateUser", "Forum"))
+        {
+            <div>Username: <input type="text" name="username" /></div>
+            <div>Password: <input type="password" name="password" /></div>
+            <div><input type="submit" value="Register" /></div>
+        
+        }
+
+   

@@ -1,0 +1,50 @@
+﻿@model MessageBoardJK.Models.BaseModel
+<html>
+    <head>
+        <title>@(ViewBag.Title)</title>
+    </head>
+    <body>
+       
+        <h1>Jill's Message Board</h1>
+        <!-- Jim, I'm a Developer, not a Designer! CSS to come -->
+        @if (Model.CurrentUser == null)
+        { 
+            using (Html.BeginForm("Login", "Forum"))
+            {
+                <div>Username: <input type="text" name="username" /></div>
+                <div>Password: <input type="password" name="password" /></div>
+                <div><input type="submit" value="Login" /></div>
+                <div>@(Html.ActionLink("Register", "Register")) </div>
+            }
+        }
+        else
+        {
+            <div>Hello, <strong>@(Model.CurrentUser.Username)!</strong></div>
+        }
+       
+
+        <hr />
+
+        <h2> @(Html.ActionLink("Index",  "Index"))
+        @if (Model.BreadCrumb.Forum != null && Model.BreadCrumb.Forum.forum_id != 0)
+        {
+            <text>&gt;</text> @(Html.ActionLink(Model.BreadCrumb.Forum.name, "ViewForum", new { id = Model.BreadCrumb.Forum.forum_id})) 
+        } 
+        @if (Model.BreadCrumb.Thread  != null && Model.BreadCrumb.Thread.thread_id != 0)
+        {
+            <text>&gt;</text> @(Html.ActionLink(Model.BreadCrumb.Thread.OpeningPost.subject, "ViewThread", new { id = Model.BreadCrumb.Thread.thread_id }));
+        }
+        @if (Model.BreadCrumb.HeaderText != null)
+        {
+            <text>&gt;</text> @(Model.BreadCrumb.HeaderText)
+        }
+        
+        </h2>
+        
+        @(RenderBody())
+        
+        <hr />
+        
+        <p>This is the footer part.</p>
+    </body>
+</html>

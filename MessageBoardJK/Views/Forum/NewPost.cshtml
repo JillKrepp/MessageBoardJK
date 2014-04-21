@@ -1,0 +1,26 @@
+﻿
+@model MessageBoardJK.Models.NewPostModel
+@{
+    ViewBag.Title = "NewPost";
+}
+
+
+@using (Html.BeginForm(Model.PostBackAction, "Forum"))
+{
+    
+    
+    if (Model.Thread.thread_id == 0)
+    {
+         @(Html.HiddenFor(x => x.Thread.forum_id))      
+        <div>Subject: @(Html.TextBoxFor(x => x.Post.subject))</div>
+    }
+    else
+    { 
+        @(Html.HiddenFor(x => x.Post.reply_to))
+        @(Html.HiddenFor(x => x.Thread.thread_id))
+    }
+    <div>Content:</div> <div>@(Html.TextAreaFor(x => x.Post.content, 20, 120, null))</div>
+    <div><input type="submit" value="Post" /></div>
+    
+        
+}

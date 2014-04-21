@@ -1,0 +1,11 @@
+﻿@model MessageBoardJK.Models.ForumIndexModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<ul>
+    @foreach(var forum in Model.Forums)
+    {
+        <li>@(Html.ActionLink(forum.name, "ViewForum", "Forum", new { id = forum.forum_id }, null))</li>
+    }
+</ul>

@@ -1,0 +1,14 @@
+﻿@model MessageBoardJK.Models.ViewPostsModel
+@{
+    ViewBag.Title = "ViewThreads";
+}
+
+@(Html.ActionLink("Post Reply", "NewReply", new { thread_id = Model.thread.thread_id}))
+    @foreach( var post in Model.posts)
+    {
+        <div>User: @(post.user.Username)</div>
+        <div>Subject: @(post.subject)</div>
+        <div>Content: @(post.content)</div>
+        <div>Post date: @(post.post_date)</div>      
+        <hr />
+    }
